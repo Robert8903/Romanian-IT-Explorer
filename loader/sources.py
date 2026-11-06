@@ -1,4 +1,5 @@
 """The exact files we download from data.gov.ro, and how many rows each one has."""
+from dataclasses import dataclass
 
 BASE = "https://data.gov.ro/dataset"
 
@@ -93,3 +94,30 @@ ACCOUNTS = {
         },
     },
 }
+
+
+@dataclass(frozen=True)
+class Source:
+    key: str
+    url: str
+    kind: str
+    year: int | None
+    format: str | None
+    expected_rows: int
+
+
+def load_sources(years):
+    """Return the registry files plus the accounts files of the given years."""
+    sources = [
+        Source(key, entry["url"], key, None, None, entry["expected_rows"])
+        for key, entry in REGISTRY.items()
+    ]
+    for year in years:
+        if year not in ACCOUNTS:
+            raise ValueError(f"No accounts files for year {year}")
+        for filing_format, entry in ACCOUNTS[year].items():
+            key = f"accounts_{year}_{filing_format}"
+            sources.append(
+                Source(key, entry["url"], "accounts", year, filing_format, entry["expected_rows"])
+            )
+    return sources

@@ -10,6 +10,16 @@ services:
       timeout: 3s
       retries: 10
 
+  loader:
+    build: ./loader
+    env_file: .env
+    volumes:
+      - rawdata:/data/raw
+    depends_on:
+      db:
+        condition: service_healthy
+
 volumes:
   dbdata:
     name: ${DB_VOLUME:-career_dbdata}
+  rawdata:
