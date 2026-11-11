@@ -1,0 +1,20 @@
+[client]
+toolbarMode = "minimal"
+
+[theme]
+base = "dark"
+primaryColor = "#FFC93C"
+backgroundColor = "#1B1560"
+secondaryBackgroundColor = "#2A2280"
+textColor = "#F4F1FF"
+linkColor = "#FFC93C"
+borderColor = "#4A40AE"
+showWidgetBorder = true
+dataframeHeaderBackgroundColor = "#2A2280"
+font = "Schibsted Grotesk:https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;900&display=swap"
+headingFontWeights = [900, 700, 700, 600, 600, 600]
+headingFontSizes = ["3.25rem", "1.75rem", "1.4rem", "1.2rem", "1rem", "0.9rem"]
+metricValueFontSize = "1.5rem"
+baseRadius = "0.3rem"
+buttonRadius = "full"
+chartCategoricalColors = ["#FFC93C", "#FF7A6B", "#6BC8FF", "#5FE0B0", "#E59BFF"]
