@@ -1,15 +1,30 @@
-"""Copy the downloaded files into staging tables, in one transaction, safe to repeat."""
+"""Load the downloaded files and clean them with SQL, in one transaction, safe to repeat."""
+import csv
+import hashlib
 import json
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
 SQL_DIR = Path(__file__).parent / "sql"
-STAGING_TABLES = [
+STATUS_GROUPS = Path(__file__).parent / "status_groups.csv"
+CLEANING_FILES = [
+    "02_reference.sql",
+    "03_companies.sql",
+    "04_financials.sql",
+    "05_profile.sql",
+]
+INDEX_FILE = "06_indexes.sql"
+COUNTED_TABLES = [
     "staging_firms",
     "staging_statuses",
     "staging_status_codes",
     "staging_accounts",
+    "companies",
+    "ambiguous_cui",
+    "financials",
+    "rejected_financials",
+    "company_profile",
 ]
 
 
@@ -90,6 +105,13 @@ def _copy_file(cursor, source, path, sample_pct):
     return rows_in_file
 
 
+def _copy_status_groups(cursor):
+    with open(STATUS_GROUPS, encoding="utf-8", newline="") as mapping:
+        with cursor.copy("COPY staging_status_groups (code, status_group) FROM STDIN") as copy:
+            for row in csv.DictReader(mapping):
+                copy.write_row([row["code"], row["status_group"]])
+
+
 def _check_row_count(source, raw_dir, rows_in_file):
     """A file with the wrong size means something went wrong: stop and name it."""
     expected = source.expected_rows
@@ -111,9 +133,18 @@ def _run_sql(conn, file_name):
     conn.execute((SQL_DIR / file_name).read_text())
 
 
+def _rules_digest():
+    """Changing a cleaning rule or the status mapping has to trigger a new load."""
+    digest = hashlib.sha256(STATUS_GROUPS.read_bytes())
+    for path in sorted(SQL_DIR.glob("*.sql")):
+        digest.update(path.read_bytes())
+    return digest.hexdigest()
+
+
 def _fingerprint(sources, sample_pct, create_indexes):
     return json.dumps(
         {
+            "rules": _rules_digest(),
             "sources": sorted(f"{source.key} {source.url} {source.expected_rows}" for source in sources),
             "sample_pct": sample_pct,
             "create_indexes": create_indexes,
@@ -130,10 +161,20 @@ def _already_loaded(conn, fingerprint):
 
 
 def _count_rows(conn):
-    return {
+    counts = {
         table: conn.execute(f"SELECT count(*) FROM {table}").fetchone()[0]
-        for table in STAGING_TABLES
+        for table in COUNTED_TABLES
     }
+    counts["dropped_cui"] = conn.execute(
+        "SELECT count(*) FROM staging_firms WHERE cui IS NULL OR cui !~ '^[0-9]+$' OR cui::bigint = 0"
+    ).fetchone()[0]
+    counts["unknown_status"] = conn.execute(
+        "SELECT count(*) FROM companies WHERE status_group = 'unknown'"
+    ).fetchone()[0]
+    counts["suspect_employees"] = conn.execute(
+        "SELECT count(*) FROM financials WHERE employees_suspect"
+    ).fetchone()[0]
+    return counts
 
 
 def _record_run(conn, fingerprint, status, raw_copy_s=None, cleaning_s=None, index_s=None):
@@ -163,17 +204,30 @@ def run_pipeline(conn, raw_dir, sources, sample_pct=100, create_indexes=True):
                     path = Path(raw_dir) / source.key
                     rows_in_file = _copy_file(cursor, source, path, sample_pct)
                     _check_row_count(source, raw_dir, rows_in_file)
+                _copy_status_groups(cursor)
             conn.execute(
                 "INSERT INTO staging_statuses "
                 "SELECT cod_inmatriculare, cod FROM all_statuses a WHERE EXISTS ("
                 "SELECT 1 FROM staging_firms f WHERE f.cod_inmatriculare = a.cod_inmatriculare)"
             )
             raw_copy_s = time.perf_counter() - started
-            _record_run(conn, fingerprint, "finished", raw_copy_s, 0.0, 0.0)
+
+            started = time.perf_counter()
+            for file_name in CLEANING_FILES:
+                _run_sql(conn, file_name)
+            cleaning_s = time.perf_counter() - started
+
+            index_s = 0.0
+            if create_indexes:
+                started = time.perf_counter()
+                _run_sql(conn, INDEX_FILE)
+                index_s = time.perf_counter() - started
+
+            _record_run(conn, fingerprint, "finished", raw_copy_s, cleaning_s, index_s)
             counts = _count_rows(conn)
     except Exception:
         with conn.transaction():
             _record_run(conn, fingerprint, "failed")
         raise
 
-    return LoadReport("finished", raw_copy_s=raw_copy_s, counts=counts)
+    return LoadReport("finished", raw_copy_s, cleaning_s, index_s, counts)

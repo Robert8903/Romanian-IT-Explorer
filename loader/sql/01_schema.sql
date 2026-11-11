@@ -1,5 +1,5 @@
 -- Staging tables hold the files as they are: everything is text, cleaning comes later.
-DROP TABLE IF EXISTS staging_firms, staging_statuses, staging_status_codes, staging_accounts;
+DROP TABLE IF EXISTS staging_firms, staging_statuses, staging_status_codes, staging_status_groups, staging_accounts;
 
 CREATE TABLE staging_firms (
     denumire text,
@@ -19,6 +19,11 @@ CREATE TABLE staging_statuses (
 CREATE TABLE staging_status_codes (
     cod text,
     denumire text
+);
+
+CREATE TABLE staging_status_groups (
+    code text,
+    status_group text
 );
 
 CREATE TABLE staging_accounts (

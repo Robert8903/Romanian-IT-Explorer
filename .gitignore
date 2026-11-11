@@ -221,3 +221,6 @@ __marimo__/
 
 data/
 *.csv
+!loader/status_groups.csv
+!measure/results.csv
+.vscode/

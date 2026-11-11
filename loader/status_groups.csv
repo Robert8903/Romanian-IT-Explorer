@@ -1,0 +1,114 @@
+code,status_group,name
+1036,notice,trimitere în judecată
+1037,notice,societatea mamă sub incidența Legii nr. 85/2006 privind procedura insolvenței
+1038,notice,societatea mamă sub incidența Legii nr. 85/2014 privind procedura insolvenței
+1048,active,funcțiune
+1049,dissolution_liquidation,dizolvare
+1050,notice,reorganizare - fuziune prin absorbție
+1052,dissolution_liquidation,lichidare
+1053,notice,schimbare sediu în alt județ
+1054,notice,reorganizare - divizare partială
+1055,notice,reorganizare - divizare totală
+1056,notice,schimbare formă juridică
+1057,insolvency,reorganizare judiciară
+1067,notice,urmărire penală
+1069,notice,condamnare penală
+1070,bankruptcy,faliment
+1073,insolvency,insolvabilă (art.117 din Legea nr. 64/1995)
+1074,suspended,întrerupere temporară de activitate
+1076,dissolution_liquidation,dizolvare - capital sub limita impusă de lege
+1083,insolvency,este sub incidența Legii nr. 85/2006
+1084,deregistered,radiată
+1085,notice,valabilitate sediu expirată
+1087,notice,"capital neechilibrat (prin excludere asociat, anulare hotărâre AGA, etc.)"
+1094,dissolution_liquidation,dizolvare urmare a expirării duratei de funcționare
+1098,dissolution_liquidation,dizolvare de drept nemajorare capital cf. Legii nr. 314/2001
+1100,dissolution_liquidation,dizolvare de drept asociat unic cf. Legii nr. 314/2001
+1105,insolvency,insolvabilă (art.131 din O.G. nr. 61/2002)
+1106,insolvency,deschidere procedură cf.Legii nr. 64/1995 republicată
+1107,insolvency,insolvență
+1109,dissolution_liquidation,"dizolvare de drept, cf art.30 din Legea nr. 359/2004"
+1110,notice,intră sub incidența Legii nr. 359/2004
+1113,dissolution_liquidation,"dizolvare judiciară, cf art.237 din Legea nr. 31/1990"
+1114,bankruptcy,suspendare procedură faliment
+1115,notice,firma mamă în dizolvare
+1119,insolvency,suspendare procedură de insolvență
+1120,dissolution_liquidation,dizolvare conform art.235 din Legea nr. 31/1990
+1121,insolvency,insolvență străină
+1123,insolvency,suspendare provizorie a procedurii de insolvență
+1125,notice,reorganizare prin fuziune transfrontalieră
+1126,insolvency,este sub incidența OUG nr. 91/2013
+1128,dissolution_liquidation,"suspendare dizolvare cf. Legii 286/2009, Legii 135/2010"
+1129,dissolution_liquidation,"suspendare lichidare cf. Legii 286/2009, Legii 135/2010"
+1130,notice,"suspendare fuziune cf. Legii 286/2009, Legii 135/2010"
+1131,notice,"suspendare divizare cf. Legii 286/2009, Legii 135/2010"
+1132,suspended,"interzicerea de a  desfășura anumite activități cf. Legii 286/2009, Legii 135/2010"
+1133,dissolution_liquidation,"dizolvare cf. Legii 286/2009, Legii 135/2010"
+1134,suspended,"suspendare activități cf. Legii 286/2009, Legii 135/2010"
+1139,insolvency,este sub incidența Legii nr. 85/2014
+1140,notice,"interdicția inițierii procedurii de dizolvare sau lichidare cf. Legii 286/2009, Legii 135/2010"
+1141,notice,"interdicția inițierii fuziunii cf. Legii 286/2009, Legii 135/2010"
+1142,notice,"interdicția inițierii divizării cf. Legii 286/2009, Legii 135/2010"
+1143,notice,"interdicția inițierii reducerii de capital social cf. Legii 286/2009, Legii 135/2010"
+1145,dissolution_liquidation,"dizolvare judiciară, cf. art. 227 din Legea 31/1990"
+1147,insolvency,suspendare provizorie a executării sentinței având ca obiect intrarea în insolvență
+1148,bankruptcy,suspendare provizorie a executării sentinței de intrare în faliment
+1150,notice,reorganizare prin transformare transfrontalieră
+1151,suspended,suspendare/interzicere activitate cf. OG nr.99/2000
+1152,suspended,suspendare/interzicere activitate în baza Legii nr. 61/1991
+1153,suspended,Suspendare activitate conform Legii nr. 349/2002
+2037,notice,cerere de radiere cf. art. 260 din Legea 31/1990 trimisă la tribunal spre soluționare
+2047,notice,cerere de radiere pentru firmele aflate sub incidența Legii 314/2001 trimisă la tribunal spre soluționare
+2049,notice,înregistrare depunere cerere de fuziune și transmitere la tribunal
+2050,notice,înregistrare depunere cerere de divizare și transmitere la tribunal
+2051,notice,"este înregistrată o hotărâre judecătorească de fuziune definitivă, fără a fi irevocabilă"
+2052,notice,"este înregistrată o hotărâre judecătorească de divizare definitivă, fără a fi irevocabilă"
+2053,notice,cerere de radiere cf. art.237 din Legea nr. 31/1990 trimisă la tribunal spre soluționare
+2054,notice,dosar trimis la tribunal pentru constatare perimare
+2055,notice,cerere de radiere cf. Legii nr. 359/2004 trimisă la tribunal spre soluționare
+2056,notice,dosar trimis la tribunal spre soluționare
+2060,dissolution_liquidation,este menționată o hotărâre de dizolvare judiciară cf. art.227 din Legea nr. 31/1990
+2062,dissolution_liquidation,este menționată o hotărâre de radiere cf. art.237 din Legea nr. 31/1990
+2065,notice,mandat administratori expirat
+2067,notice,capital neechilibrat
+2068,notice,certificat de înmatriculare nepreschimbat în termenul legal
+2069,notice,sediu expirat
+2070,notice,mandat cenzori expirat
+2071,notice,sediu radiat
+2072,notice,sechestru părți sociale/acțiuni deținute de unul sau mai mulți asoc./acționari
+2075,notice,autorizație nepreschimbată în termenul legal
+2076,notice,capital subscris sub limita legală
+2077,dissolution_liquidation,este menționată o hotărâre a adunării generale privind dizolvarea
+2078,dissolution_liquidation,este menționată o hotărâre de dizolvare judiciară cf. art.237 din Legea nr. 31/1990
+2081,notice,este menționat un recurs/sunt menționate recursuri
+2086,notice,durata societății expirată
+2091,notice,cerere de dizolvare cf. art.237 din Legea nr. 31/1990 trimisă la tribunal spre soluționare
+2093,notice,cerere de dizolvare cf. art.227 alin. (1) din Legea nr. 31/1990 trimisă la tribunal spre soluționare
+2097,notice,capital neechilibrat ca urmare a denominării cf. Legii nr. 101/2005
+2098,notice,s-a depus/transmis notificare pe Legea nr. 64/1995
+2099,notice,înregistrare instituire măsuri asiguratorii
+2100,notice,sechestru bunuri mobile și/sau imobile cu excepția părților sociale/acțiuni
+2104,notice,este menționată o opoziție/sunt menționate opoziții
+2108,dissolution_liquidation,suspendare executare procedură lichidare
+2109,dissolution_liquidation,suspendare executare procedură dizolvare
+2115,notice,înregistrare depunere cerere de numire lichidator și transmitere la tribunal
+2118,notice,înregistrare depunere cerere de intervenție și transmitere dosar integral la tribunal
+2119,notice,înregistrare depunere plângere și transmitere dosar integral la tribunal
+2120,notice,perioadă de suspendare activitate expirată
+2121,dissolution_liquidation,este înregistrată o hotărâre judecătorească definitivă în soluționarea cererii de numire lichidator
+2125,dissolution_liquidation,este menționată o hotărâre de radiere cf. Legii nr. 359/2004
+2126,notice,Hotărâre judecătorească de atragere a răspunderii patrimoniale
+2127,notice,"raspundere penala cf.  Legii 286/2009, Legii 135/2010"
+2129,notice,Instituire ipotecă mobiliară asupra părților sociale/acțiunilor
+2130,notice,Sechestru instituit asupra tuturor bunurilor mobile si imobile
+2131,notice,Ridicare sechestru instituit asupra tuturor bunurilor mobile si imobile
+2132,notice,Instituire confiscare specială conform Cod Penal
+2134,dissolution_liquidation,prelungire perioada de lichidare
+2135,notice,este menționat un apel
+2137,notice,Instituire ipotecă
+2139,dissolution_liquidation,este menționată o decizie a asociatului privind dizolvarea
+2146,notice,sub incidența art.237 indice 2 alin.(1) din Legea societăților nr. 31/1990
+2147,notice,sub incidența art.260 alin.(7) din Legea societăților nr. 31/1990
+2148,notice,act de sediu desființat
+2150,notice,pierdere calitate de microîntreprindere aparținând întreprinzătorului debutant
+2152,notice,înscrisuri desființate
